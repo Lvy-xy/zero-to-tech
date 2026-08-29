@@ -1,4 +1,4 @@
-import {anime, stagger} from "https://cdn.jsdelivr.net/npm/animejs@4/lib/anime.iife.min.js"
+import { animate, stagger } from "https://cdn.jsdelivr.net/npm/animejs@4/+esm";
 
 export function initCardsAnim() {
   animate(".card", {
