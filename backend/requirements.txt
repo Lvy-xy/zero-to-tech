@@ -22,7 +22,6 @@ Jinja2==3.1.6
 markdown-it-py==4.2.0
 MarkupSafe==3.0.3
 mdurl==0.1.2
-packaging @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_packaging_1785888127/work
 pydantic==2.13.5
 pydantic-extra-types==2.11.1
 pydantic-settings==2.15.0
