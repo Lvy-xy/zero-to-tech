@@ -21,3 +21,5 @@ dist/
 __pycache__
 *.pyc
 backend/history.json
+backend/test.db
+backend/history.db

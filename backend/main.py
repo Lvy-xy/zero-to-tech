@@ -1,10 +1,11 @@
-import json
 from fastapi import FastAPI
 from pydantic import BaseModel
 from datetime import datetime, timezone
 from fastapi.middleware.cors import CORSMiddleware
 from pypinyin import lazy_pinyin, Style
 from snownlp import SnowNLP
+
+from storage import init_db, save_record, get_history
 
 
 
@@ -15,7 +16,7 @@ app.add_middleware(
     allow_methods=["GET", "POST"]
 )
 
-HISTORY_FILE = "history.json"
+init_db() 
 
 profile = {
     "heroTitle": "关于我（来自后端）",
@@ -46,21 +47,6 @@ def score_label(score):
         return "中性"
 
 
-def load_history():
-    try:
-        with open(HISTORY_FILE, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except FileNotFoundError:
-        return []
-
-
-def save_record(record):
-    records = load_history()
-    records.append(record)
-    with open(HISTORY_FILE, "w", encoding="utf-8") as f:
-        json.dump(records, f, ensure_ascii=False, indent=2)
-
-
 @app.get("/api/profile")
 def get_profile():
     return profile
@@ -84,4 +70,4 @@ def analyze(req: AnalyzeRequest):
 
 @app.get("/api/history")
 def history():
-    return load_history()
+    return get_history(10)
